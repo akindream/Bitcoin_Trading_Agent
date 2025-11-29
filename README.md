@@ -321,11 +321,203 @@ A short video walkthrough about the project highlighting the strengths of your s
 
 1 week evaluation log of your system tested with real data
 
+Here is a **complete, professional README** you can use directly in your GitHub repository (you can copy-paste this as your `README.md`):
 
-# Project Summary
-This project implements an autonomous Bitcoin trading system designed to run 24/7 with minimal human intervention. 
-It combines Dollar-Cost Averaging (DCA) with ATR-based risk management and optional LLM-driven strategy selection to dynamically adapt to 
-changing market conditions. The system supports configurable budgets, multiple trading strategies, and real-time market data from major 
-crypto source, Binance. Configuration is managed via csv file with secure credential handling, while trades are monitored through Telegram 
-alerts and weekly Gmail reports. The solution is built for cloud deployment, emphasizing automation, security and performance evaluation 
-through backtesting and live simulation. Trading with profit was achieved while taking into cognizance trading charges.
+---
+
+# Autonomous Bitcoin Trading Bot
+
+## Overview
+
+This project is a fully automated Bitcoin trading system designed to operate 24/7 with minimal human supervision. It dynamically manages capital allocation, adapts trading strategies based on market conditions, and executes trades in real time. The system integrates Dollar-Cost Averaging (DCA), ATR-based risk management, and optional LLM-assisted strategy decisions to create a flexible, data-driven trading agent suitable for high-volatility crypto markets.
+
+---
+
+## Key Features
+
+* ✅ Automated trading and strategy execution
+* ✅ Hybrid strategy: DCA + opportunistic swing trading
+* ✅ ATR-based dynamic stop-loss system
+* ✅ Fully configurable via Google Sheets
+* ✅ Secure credential management via `.env`
+* ✅ Telegram trade notifications
+* ✅ Weekly Gmail performance reports
+* ✅ Cloud-ready deployment (AWS / DigitalOcean / Docker)
+* ✅ LLM-assisted market interpretation (optional)
+* ✅ Backtesting and simulation support
+* ✅ Modular architecture for strategy expansion
+* ✅ Live portfolio dashboard (optional)
+
+---
+
+## Strategy Design
+
+### 1. Dollar-Cost Averaging (DCA)
+
+The bot purchases Bitcoin when price drops by a configured percentage or at fixed time intervals, helping reduce market timing risk.
+
+### 2. ATR-Based Stop-Loss
+
+For active (non-DCA) trades, stop-loss levels dynamically adjust using:
+
+```
+Stop = Entry Price – (k × ATR)
+```
+
+This allows risk controls to adapt to volatility.
+
+### 3. Hybrid Strategy Engine
+
+The system can:
+
+* Switch between strategies (DCA, swing, day-trading)
+* React to market conditions dynamically
+* Pause trading during heavy drawdowns
+* Execute LLM-inspired signals when enabled
+
+---
+
+## System Architecture
+
+```
+config/
+├── config.json (cached config from Google Sheets)
+env/
+├── .env       (API keys and secrets)
+bot_core.py    (strategy logic)
+app.py         (API server & bot runner)
+dashboard/     (Flask / Streamlit UI)
+logs/          (trade history & errors)
+```
+
+---
+
+## Configuration Management
+
+| Item               | Source        |
+| ------------------ | ------------- |
+| Trading Parameters | Google Sheets |
+| Secrets & API Keys | `.env`        |
+| Local Fallback     | `config.json` |
+
+Configs refresh hourly and automatically fail over to the local cache if unavailable.
+
+---
+
+## Trade Monitoring
+
+### Telegram Alerts (Real-time)
+
+Each trade sends:
+
+* Trade type (BUY / SELL)
+* BTC price
+* Amount
+* Portfolio balance
+* Profit or loss
+
+### Weekly Email Report (Every Monday 9:00AM)
+
+Summary includes:
+
+* Portfolio value
+* Profit / Loss
+* Number of trades
+* Fees
+* Strategy insights
+
+---
+
+## Supported Market Data Sources
+
+* Binance API
+
+---
+
+## Feature Engineering
+
+The system computes:
+
+* RSI, MACD, EMA, SMA
+* ATR for volatility control
+* Price momentum and trend features
+* Optional Bitcoin on-chain metrics
+* Optional LLM-driven feature selection
+
+---
+
+## Deployment
+
+Supports:
+
+* ✅ Docker
+* ✅ AWS
+* ✅ Local execution
+
+
+---
+
+## Evaluation Metrics
+
+* Portfolio growth
+* Sharpe ratio
+* Maximum drawdown
+* Trade accuracy
+* Profit factor
+* Strategy stability
+
+---
+
+## Security
+
+* API keys are NEVER stored in source code
+* `.env`and csv files is excluded from GitHub
+
+---
+
+### Configuration:
+
+```
+Budget: $10,000
+DCA Trigger: 3%
+ATR Multiplier: 1.5
+Mode: Hybrid
+Weekly Report: Monday 9:00AM
+```
+
+### Sample Flow:
+
+1. Bot buys or sells by model/LLM inputs
+2. Swing trade opened with ATR stop
+3. Stop-loss hit → Auto exit
+4. Telegram alert sent
+5. Weekly performance email delivered
+
+---
+
+## Bonus Implementations
+
+* 📊 Dashboard UI
+* 📉 Drawdown control
+* 🧠 LLM-assisted optimization
+* 🔄 Strategy plug-ins
+* 🧪 Simulated market stress testing
+
+---
+
+## Final Deliverables
+
+* ✅ Clean and commented code
+* ✅ System documentation
+
+
+---
+
+
+📫 Contact
+
+📧 Medium: Ernest Braimoh https://medium.com/@akindream/building-a-fully-autonomous-bitcoin-trading-bot-with-ai-and-real-time-risk-management-0b1e450235af
+
+🔗 LinkedIn: Ernest Braimoh https://www.linkedin.com/posts/ernest-braimoh_building-a-fully-autonomous-bitcoin-trading-activity-7400511515298050048-SEwf?utm_source=share&utm_medium=member_desktop&rcm=ACoAACJ5f84BSF16YQBlNnzy86sMhIc99PdU8l0
+
+🔗 Youtube: Ernest Braimoh
